@@ -1,0 +1,494 @@
+{
+  "contractName": "ITransactions",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "salt",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "signerAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        },
+        {
+          "internalType": "bytes",
+          "name": "signature",
+          "type": "bytes"
+        }
+      ],
+      "name": "executeTransaction",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"salt\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"signerAddress\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"signature\",\"type\":\"bytes\"}],\"name\":\"executeTransaction\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"executeTransaction(uint256,address,bytes,bytes)\":{\"details\":\"Executes an exchange method call in the context of signer.\",\"params\":{\"data\":\"AbiV2 encoded calldata.\",\"salt\":\"Arbitrary number to ensure uniqueness of transaction hash.\",\"signature\":\"Proof of signer transaction by signer.\",\"signerAddress\":\"Address of transaction signer.\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/E/Warcraft/t/CalDex/exchangewrapper/contracts/external/0x/v2/interfaces/ITransactions.sol\":\"ITransactions\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/E/Warcraft/t/CalDex/exchangewrapper/contracts/external/0x/v2/interfaces/ITransactions.sol\":{\"keccak256\":\"0x223d40c3365fa17f82d45116cda101ae8ac5bc9632af627d4f23d5f2f4f14993\",\"urls\":[\"bzz-raw://7b1a558da94e85981c751a04c1b3e50e44867960d43da92ce111bb979ee85be2\",\"dweb:/ipfs/QmUDx7vkLYdHShhoUvTR8LjKvcPvcGYTPxPRyv2RyKkfgz\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "/*\r\n\r\n  Copyright 2018 ZeroEx Intl.\r\n\r\n  Licensed under the Apache License, Version 2.0 (the \"License\");\r\n  you may not use this file except in compliance with the License.\r\n  You may obtain a copy of the License at\r\n\r\n    http://www.apache.org/licenses/LICENSE-2.0\r\n\r\n  Unless required by applicable law or agreed to in writing, software\r\n  distributed under the License is distributed on an \"AS IS\" BASIS,\r\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\r\n  See the License for the specific language governing permissions and\r\n  limitations under the License.\r\n\r\n*/\r\n\r\npragma solidity ^0.6.0;\r\npragma experimental ABIEncoderV2;\r\n\r\n\r\nabstract contract ITransactions {\r\n\r\n    /// @dev Executes an exchange method call in the context of signer.\r\n    /// @param salt Arbitrary number to ensure uniqueness of transaction hash.\r\n    /// @param signerAddress Address of transaction signer.\r\n    /// @param data AbiV2 encoded calldata.\r\n    /// @param signature Proof of signer transaction by signer.\r\n    function executeTransaction(\r\n        uint256 salt,\r\n        address signerAddress,\r\n        bytes calldata data,\r\n        bytes calldata signature\r\n    )\r\n        virtual\r\n        external;\r\n}\r\n",
+  "sourcePath": "E:/Warcraft/t/CalDex/exchangewrapper/contracts/external/0x/v2/interfaces/ITransactions.sol",
+  "ast": {
+    "absolutePath": "/E/Warcraft/t/CalDex/exchangewrapper/contracts/external/0x/v2/interfaces/ITransactions.sol",
+    "exportedSymbols": {
+      "ITransactions": [
+        129
+      ]
+    },
+    "id": 130,
+    "license": null,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 115,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "598:23:4"
+      },
+      {
+        "id": 116,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "623:33:4"
+      },
+      {
+        "abstract": true,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 129,
+        "linearizedBaseContracts": [
+          129
+        ],
+        "name": "ITransactions",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": {
+              "id": 117,
+              "nodeType": "StructuredDocumentation",
+              "src": "703:318:4",
+              "text": "@dev Executes an exchange method call in the context of signer.\n @param salt Arbitrary number to ensure uniqueness of transaction hash.\n @param signerAddress Address of transaction signer.\n @param data AbiV2 encoded calldata.\n @param signature Proof of signer transaction by signer."
+            },
+            "functionSelector": "bfc8bfce",
+            "id": 128,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "executeTransaction",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 126,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 119,
+                  "mutability": "mutable",
+                  "name": "salt",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 128,
+                  "src": "1065:12:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 118,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1065:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 121,
+                  "mutability": "mutable",
+                  "name": "signerAddress",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 128,
+                  "src": "1088:21:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 120,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1088:7:4",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 123,
+                  "mutability": "mutable",
+                  "name": "data",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 128,
+                  "src": "1120:19:4",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 122,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1120:5:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 125,
+                  "mutability": "mutable",
+                  "name": "signature",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 128,
+                  "src": "1150:24:4",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 124,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1150:5:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1054:127:4"
+            },
+            "returnParameters": {
+              "id": 127,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1216:0:4"
+            },
+            "scope": 129,
+            "src": "1027:190:4",
+            "stateMutability": "nonpayable",
+            "virtual": true,
+            "visibility": "external"
+          }
+        ],
+        "scope": 130,
+        "src": "662:558:4"
+      }
+    ],
+    "src": "598:624:4"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/E/Warcraft/t/CalDex/exchangewrapper/contracts/external/0x/v2/interfaces/ITransactions.sol",
+      "exportedSymbols": {
+        "ITransactions": [
+          129
+        ]
+      },
+      "license": null
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.6",
+            ".0"
+          ]
+        },
+        "id": 115,
+        "name": "PragmaDirective",
+        "src": "598:23:4"
+      },
+      {
+        "attributes": {
+          "literals": [
+            "experimental",
+            "ABIEncoderV2"
+          ]
+        },
+        "id": 116,
+        "name": "PragmaDirective",
+        "src": "623:33:4"
+      },
+      {
+        "attributes": {
+          "abstract": true,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            129
+          ],
+          "name": "ITransactions",
+          "scope": 130
+        },
+        "children": [
+          {
+            "attributes": {
+              "body": null,
+              "functionSelector": "bfc8bfce",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "executeTransaction",
+              "overrides": null,
+              "scope": 129,
+              "stateMutability": "nonpayable",
+              "virtual": true,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@dev Executes an exchange method call in the context of signer.\n @param salt Arbitrary number to ensure uniqueness of transaction hash.\n @param signerAddress Address of transaction signer.\n @param data AbiV2 encoded calldata.\n @param signature Proof of signer transaction by signer."
+                },
+                "id": 117,
+                "name": "StructuredDocumentation",
+                "src": "703:318:4"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "salt",
+                      "overrides": null,
+                      "scope": 128,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 118,
+                        "name": "ElementaryTypeName",
+                        "src": "1065:7:4"
+                      }
+                    ],
+                    "id": 119,
+                    "name": "VariableDeclaration",
+                    "src": "1065:12:4"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "signerAddress",
+                      "overrides": null,
+                      "scope": 128,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 120,
+                        "name": "ElementaryTypeName",
+                        "src": "1088:7:4"
+                      }
+                    ],
+                    "id": 121,
+                    "name": "VariableDeclaration",
+                    "src": "1088:21:4"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "data",
+                      "overrides": null,
+                      "scope": 128,
+                      "stateVariable": false,
+                      "storageLocation": "calldata",
+                      "type": "bytes",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes",
+                          "type": "bytes"
+                        },
+                        "id": 122,
+                        "name": "ElementaryTypeName",
+                        "src": "1120:5:4"
+                      }
+                    ],
+                    "id": 123,
+                    "name": "VariableDeclaration",
+                    "src": "1120:19:4"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "signature",
+                      "overrides": null,
+                      "scope": 128,
+                      "stateVariable": false,
+                      "storageLocation": "calldata",
+                      "type": "bytes",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes",
+                          "type": "bytes"
+                        },
+                        "id": 124,
+                        "name": "ElementaryTypeName",
+                        "src": "1150:5:4"
+                      }
+                    ],
+                    "id": 125,
+                    "name": "VariableDeclaration",
+                    "src": "1150:24:4"
+                  }
+                ],
+                "id": 126,
+                "name": "ParameterList",
+                "src": "1054:127:4"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 127,
+                "name": "ParameterList",
+                "src": "1216:0:4"
+              }
+            ],
+            "id": 128,
+            "name": "FunctionDefinition",
+            "src": "1027:190:4"
+          }
+        ],
+        "id": 129,
+        "name": "ContractDefinition",
+        "src": "662:558:4"
+      }
+    ],
+    "id": 130,
+    "name": "SourceUnit",
+    "src": "598:624:4"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.12+commit.27d51765.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-04-13T11:13:14.936Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "executeTransaction(uint256,address,bytes,bytes)": {
+        "details": "Executes an exchange method call in the context of signer.",
+        "params": {
+          "data": "AbiV2 encoded calldata.",
+          "salt": "Arbitrary number to ensure uniqueness of transaction hash.",
+          "signature": "Proof of signer transaction by signer.",
+          "signerAddress": "Address of transaction signer."
+        }
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

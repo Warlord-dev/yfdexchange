@@ -1,0 +1,1091 @@
+{
+  "contractName": "ISignatureValidator",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "hash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "signerAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes",
+          "name": "signature",
+          "type": "bytes"
+        }
+      ],
+      "name": "preSign",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "validatorAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "approval",
+          "type": "bool"
+        }
+      ],
+      "name": "setSignatureValidatorApproval",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "hash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "signerAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes",
+          "name": "signature",
+          "type": "bytes"
+        }
+      ],
+      "name": "isValidSignature",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "isValid",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"hash\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"signerAddress\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"signature\",\"type\":\"bytes\"}],\"name\":\"isValidSignature\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"isValid\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"hash\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"signerAddress\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"signature\",\"type\":\"bytes\"}],\"name\":\"preSign\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"validatorAddress\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"approval\",\"type\":\"bool\"}],\"name\":\"setSignatureValidatorApproval\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"isValidSignature(bytes32,address,bytes)\":{\"details\":\"Verifies that a signature is valid.\",\"params\":{\"hash\":\"Message hash that is signed.\",\"signature\":\"Proof of signing.\",\"signerAddress\":\"Address of signer.\"}},\"preSign(bytes32,address,bytes)\":{\"details\":\"Approves a hash on-chain using any valid signature type.      After presigning a hash, the preSign signature type will become valid for that hash and signer.\",\"params\":{\"signature\":\"Proof that the hash has been signed by signer.\",\"signerAddress\":\"Address that should have signed the given hash.\"}},\"setSignatureValidatorApproval(address,bool)\":{\"details\":\"Approves/unnapproves a Validator contract to verify signatures on signer's behalf.\",\"params\":{\"approval\":\"Approval or disapproval of  Validator contract.\",\"validatorAddress\":\"Address of Validator contract.\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/E/Warcraft/t/CalDex/exchangewrapper/contracts/external/0x/v2/interfaces/ISignatureValidator.sol\":\"ISignatureValidator\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/E/Warcraft/t/CalDex/exchangewrapper/contracts/external/0x/v2/interfaces/ISignatureValidator.sol\":{\"keccak256\":\"0xfadf164d4b56e71a3b9b258ec89077548a85424873e0dea64c213f0e8a9a0729\",\"urls\":[\"bzz-raw://ea8d6d4ca2e07fb7a121947025435f0786ad6a2ae9c4fa36847fc332716563cb\",\"dweb:/ipfs/QmYs2kR1QLrpKNWUBRqBWUw7TnbjuC94khUAhSA2qkGFcT\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "/*\r\n\r\n  Copyright 2018 ZeroEx Intl.\r\n\r\n  Licensed under the Apache License, Version 2.0 (the \"License\");\r\n  you may not use this file except in compliance with the License.\r\n  You may obtain a copy of the License at\r\n\r\n    http://www.apache.org/licenses/LICENSE-2.0\r\n\r\n  Unless required by applicable law or agreed to in writing, software\r\n  distributed under the License is distributed on an \"AS IS\" BASIS,\r\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\r\n  See the License for the specific language governing permissions and\r\n  limitations under the License.\r\n\r\n*/\r\n\r\npragma solidity ^0.6.0;\r\npragma experimental ABIEncoderV2;\r\n\r\n\r\nabstract contract ISignatureValidator {\r\n\r\n    constructor() public {}\r\n    /// @dev Approves a hash on-chain using any valid signature type.\r\n    ///      After presigning a hash, the preSign signature type will become valid for that hash and signer.\r\n    /// @param signerAddress Address that should have signed the given hash.\r\n    /// @param signature Proof that the hash has been signed by signer.\r\n    function preSign(\r\n        bytes32 hash,\r\n        address signerAddress,\r\n        bytes calldata signature\r\n    )\r\n        virtual\r\n        external;\r\n\r\n    /// @dev Approves/unnapproves a Validator contract to verify signatures on signer's behalf.\r\n    /// @param validatorAddress Address of Validator contract.\r\n    /// @param approval Approval or disapproval of  Validator contract.\r\n    function setSignatureValidatorApproval(\r\n        address validatorAddress,\r\n        bool approval\r\n    )\r\n        virtual\r\n        external;\r\n\r\n    /// @dev Verifies that a signature is valid.\r\n    /// @param hash Message hash that is signed.\r\n    /// @param signerAddress Address of signer.\r\n    /// @param signature Proof of signing.\r\n    function isValidSignature(\r\n        bytes32 hash,\r\n        address signerAddress,\r\n        bytes memory signature\r\n    )\r\n        public\r\n        virtual\r\n        view\r\n        returns (bool isValid);\r\n}\r\n",
+  "sourcePath": "E:/Warcraft/t/CalDex/exchangewrapper/contracts/external/0x/v2/interfaces/ISignatureValidator.sol",
+  "ast": {
+    "absolutePath": "/E/Warcraft/t/CalDex/exchangewrapper/contracts/external/0x/v2/interfaces/ISignatureValidator.sol",
+    "exportedSymbols": {
+      "ISignatureValidator": [
+        113
+      ]
+    },
+    "id": 114,
+    "license": null,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 77,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "598:23:3"
+      },
+      {
+        "id": 78,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "623:33:3"
+      },
+      {
+        "abstract": true,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 113,
+        "linearizedBaseContracts": [
+          113
+        ],
+        "name": "ISignatureValidator",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 81,
+              "nodeType": "Block",
+              "src": "730:2:3",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 82,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 79,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "720:2:3"
+            },
+            "returnParameters": {
+              "id": 80,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "730:0:3"
+            },
+            "scope": 113,
+            "src": "709:23:3",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 83,
+              "nodeType": "StructuredDocumentation",
+              "src": "738:326:3",
+              "text": "@dev Approves a hash on-chain using any valid signature type.\n      After presigning a hash, the preSign signature type will become valid for that hash and signer.\n @param signerAddress Address that should have signed the given hash.\n @param signature Proof that the hash has been signed by signer."
+            },
+            "functionSelector": "3683ef8e",
+            "id": 92,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "preSign",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 90,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 85,
+                  "mutability": "mutable",
+                  "name": "hash",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 92,
+                  "src": "1097:12:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 84,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1097:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 87,
+                  "mutability": "mutable",
+                  "name": "signerAddress",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 92,
+                  "src": "1120:21:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 86,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1120:7:3",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 89,
+                  "mutability": "mutable",
+                  "name": "signature",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 92,
+                  "src": "1152:24:3",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 88,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1152:5:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1086:97:3"
+            },
+            "returnParameters": {
+              "id": 91,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1218:0:3"
+            },
+            "scope": 113,
+            "src": "1070:149:3",
+            "stateMutability": "nonpayable",
+            "virtual": true,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 93,
+              "nodeType": "StructuredDocumentation",
+              "src": "1227:228:3",
+              "text": "@dev Approves/unnapproves a Validator contract to verify signatures on signer's behalf.\n @param validatorAddress Address of Validator contract.\n @param approval Approval or disapproval of  Validator contract."
+            },
+            "functionSelector": "77fcce68",
+            "id": 100,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setSignatureValidatorApproval",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 98,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 95,
+                  "mutability": "mutable",
+                  "name": "validatorAddress",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 100,
+                  "src": "1510:24:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 94,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1510:7:3",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 97,
+                  "mutability": "mutable",
+                  "name": "approval",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 100,
+                  "src": "1545:13:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 96,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1545:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1499:66:3"
+            },
+            "returnParameters": {
+              "id": 99,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1600:0:3"
+            },
+            "scope": 113,
+            "src": "1461:140:3",
+            "stateMutability": "nonpayable",
+            "virtual": true,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 101,
+              "nodeType": "StructuredDocumentation",
+              "src": "1609:187:3",
+              "text": "@dev Verifies that a signature is valid.\n @param hash Message hash that is signed.\n @param signerAddress Address of signer.\n @param signature Proof of signing."
+            },
+            "functionSelector": "93634702",
+            "id": 112,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isValidSignature",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 108,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 103,
+                  "mutability": "mutable",
+                  "name": "hash",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 112,
+                  "src": "1838:12:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 102,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1838:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 105,
+                  "mutability": "mutable",
+                  "name": "signerAddress",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 112,
+                  "src": "1861:21:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 104,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1861:7:3",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 107,
+                  "mutability": "mutable",
+                  "name": "signature",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 112,
+                  "src": "1893:22:3",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 106,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1893:5:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1827:95:3"
+            },
+            "returnParameters": {
+              "id": 111,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 110,
+                  "mutability": "mutable",
+                  "name": "isValid",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 112,
+                  "src": "1988:12:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 109,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1988:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1987:14:3"
+            },
+            "scope": 113,
+            "src": "1802:200:3",
+            "stateMutability": "view",
+            "virtual": true,
+            "visibility": "public"
+          }
+        ],
+        "scope": 114,
+        "src": "662:1343:3"
+      }
+    ],
+    "src": "598:1409:3"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/E/Warcraft/t/CalDex/exchangewrapper/contracts/external/0x/v2/interfaces/ISignatureValidator.sol",
+      "exportedSymbols": {
+        "ISignatureValidator": [
+          113
+        ]
+      },
+      "license": null
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.6",
+            ".0"
+          ]
+        },
+        "id": 77,
+        "name": "PragmaDirective",
+        "src": "598:23:3"
+      },
+      {
+        "attributes": {
+          "literals": [
+            "experimental",
+            "ABIEncoderV2"
+          ]
+        },
+        "id": 78,
+        "name": "PragmaDirective",
+        "src": "623:33:3"
+      },
+      {
+        "attributes": {
+          "abstract": true,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            113
+          ],
+          "name": "ISignatureValidator",
+          "scope": 114
+        },
+        "children": [
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": true,
+              "kind": "constructor",
+              "modifiers": [
+                null
+              ],
+              "name": "",
+              "overrides": null,
+              "scope": 113,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 79,
+                "name": "ParameterList",
+                "src": "720:2:3"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 80,
+                "name": "ParameterList",
+                "src": "730:0:3"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 81,
+                "name": "Block",
+                "src": "730:2:3"
+              }
+            ],
+            "id": 82,
+            "name": "FunctionDefinition",
+            "src": "709:23:3"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "functionSelector": "3683ef8e",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "preSign",
+              "overrides": null,
+              "scope": 113,
+              "stateMutability": "nonpayable",
+              "virtual": true,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@dev Approves a hash on-chain using any valid signature type.\n      After presigning a hash, the preSign signature type will become valid for that hash and signer.\n @param signerAddress Address that should have signed the given hash.\n @param signature Proof that the hash has been signed by signer."
+                },
+                "id": 83,
+                "name": "StructuredDocumentation",
+                "src": "738:326:3"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "hash",
+                      "overrides": null,
+                      "scope": 92,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 84,
+                        "name": "ElementaryTypeName",
+                        "src": "1097:7:3"
+                      }
+                    ],
+                    "id": 85,
+                    "name": "VariableDeclaration",
+                    "src": "1097:12:3"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "signerAddress",
+                      "overrides": null,
+                      "scope": 92,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 86,
+                        "name": "ElementaryTypeName",
+                        "src": "1120:7:3"
+                      }
+                    ],
+                    "id": 87,
+                    "name": "VariableDeclaration",
+                    "src": "1120:21:3"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "signature",
+                      "overrides": null,
+                      "scope": 92,
+                      "stateVariable": false,
+                      "storageLocation": "calldata",
+                      "type": "bytes",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes",
+                          "type": "bytes"
+                        },
+                        "id": 88,
+                        "name": "ElementaryTypeName",
+                        "src": "1152:5:3"
+                      }
+                    ],
+                    "id": 89,
+                    "name": "VariableDeclaration",
+                    "src": "1152:24:3"
+                  }
+                ],
+                "id": 90,
+                "name": "ParameterList",
+                "src": "1086:97:3"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 91,
+                "name": "ParameterList",
+                "src": "1218:0:3"
+              }
+            ],
+            "id": 92,
+            "name": "FunctionDefinition",
+            "src": "1070:149:3"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "functionSelector": "77fcce68",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "setSignatureValidatorApproval",
+              "overrides": null,
+              "scope": 113,
+              "stateMutability": "nonpayable",
+              "virtual": true,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@dev Approves/unnapproves a Validator contract to verify signatures on signer's behalf.\n @param validatorAddress Address of Validator contract.\n @param approval Approval or disapproval of  Validator contract."
+                },
+                "id": 93,
+                "name": "StructuredDocumentation",
+                "src": "1227:228:3"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "validatorAddress",
+                      "overrides": null,
+                      "scope": 100,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 94,
+                        "name": "ElementaryTypeName",
+                        "src": "1510:7:3"
+                      }
+                    ],
+                    "id": 95,
+                    "name": "VariableDeclaration",
+                    "src": "1510:24:3"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "approval",
+                      "overrides": null,
+                      "scope": 100,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 96,
+                        "name": "ElementaryTypeName",
+                        "src": "1545:4:3"
+                      }
+                    ],
+                    "id": 97,
+                    "name": "VariableDeclaration",
+                    "src": "1545:13:3"
+                  }
+                ],
+                "id": 98,
+                "name": "ParameterList",
+                "src": "1499:66:3"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 99,
+                "name": "ParameterList",
+                "src": "1600:0:3"
+              }
+            ],
+            "id": 100,
+            "name": "FunctionDefinition",
+            "src": "1461:140:3"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "functionSelector": "93634702",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "isValidSignature",
+              "overrides": null,
+              "scope": 113,
+              "stateMutability": "view",
+              "virtual": true,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@dev Verifies that a signature is valid.\n @param hash Message hash that is signed.\n @param signerAddress Address of signer.\n @param signature Proof of signing."
+                },
+                "id": 101,
+                "name": "StructuredDocumentation",
+                "src": "1609:187:3"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "hash",
+                      "overrides": null,
+                      "scope": 112,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 102,
+                        "name": "ElementaryTypeName",
+                        "src": "1838:7:3"
+                      }
+                    ],
+                    "id": 103,
+                    "name": "VariableDeclaration",
+                    "src": "1838:12:3"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "signerAddress",
+                      "overrides": null,
+                      "scope": 112,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 104,
+                        "name": "ElementaryTypeName",
+                        "src": "1861:7:3"
+                      }
+                    ],
+                    "id": 105,
+                    "name": "VariableDeclaration",
+                    "src": "1861:21:3"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "signature",
+                      "overrides": null,
+                      "scope": 112,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "bytes",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes",
+                          "type": "bytes"
+                        },
+                        "id": 106,
+                        "name": "ElementaryTypeName",
+                        "src": "1893:5:3"
+                      }
+                    ],
+                    "id": 107,
+                    "name": "VariableDeclaration",
+                    "src": "1893:22:3"
+                  }
+                ],
+                "id": 108,
+                "name": "ParameterList",
+                "src": "1827:95:3"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "isValid",
+                      "overrides": null,
+                      "scope": 112,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 109,
+                        "name": "ElementaryTypeName",
+                        "src": "1988:4:3"
+                      }
+                    ],
+                    "id": 110,
+                    "name": "VariableDeclaration",
+                    "src": "1988:12:3"
+                  }
+                ],
+                "id": 111,
+                "name": "ParameterList",
+                "src": "1987:14:3"
+              }
+            ],
+            "id": 112,
+            "name": "FunctionDefinition",
+            "src": "1802:200:3"
+          }
+        ],
+        "id": 113,
+        "name": "ContractDefinition",
+        "src": "662:1343:3"
+      }
+    ],
+    "id": 114,
+    "name": "SourceUnit",
+    "src": "598:1409:3"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.12+commit.27d51765.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-04-13T11:13:14.934Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "isValidSignature(bytes32,address,bytes)": {
+        "details": "Verifies that a signature is valid.",
+        "params": {
+          "hash": "Message hash that is signed.",
+          "signature": "Proof of signing.",
+          "signerAddress": "Address of signer."
+        }
+      },
+      "preSign(bytes32,address,bytes)": {
+        "details": "Approves a hash on-chain using any valid signature type.      After presigning a hash, the preSign signature type will become valid for that hash and signer.",
+        "params": {
+          "signature": "Proof that the hash has been signed by signer.",
+          "signerAddress": "Address that should have signed the given hash."
+        }
+      },
+      "setSignatureValidatorApproval(address,bool)": {
+        "details": "Approves/unnapproves a Validator contract to verify signatures on signer's behalf.",
+        "params": {
+          "approval": "Approval or disapproval of  Validator contract.",
+          "validatorAddress": "Address of Validator contract."
+        }
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

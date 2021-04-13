@@ -1,0 +1,428 @@
+{
+  "contractName": "IScdMcdMigration",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "wad",
+          "type": "uint256"
+        }
+      ],
+      "name": "swapYfdToDai",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "wad",
+          "type": "uint256"
+        }
+      ],
+      "name": "swapDaiToYfd",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"wad\",\"type\":\"uint256\"}],\"name\":\"swapDaiToYfd\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"wad\",\"type\":\"uint256\"}],\"name\":\"swapYfdToDai\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/E/Warcraft/t/CalDex/exchangewrapper/contracts/external/Maker/Other/IScdMcdMigration.sol\":\"IScdMcdMigration\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/E/Warcraft/t/CalDex/exchangewrapper/contracts/external/Maker/Other/IScdMcdMigration.sol\":{\"keccak256\":\"0xd4ee1477d2755a4482c1d446817d9528822b6108222391c865ef268b2390e38e\",\"urls\":[\"bzz-raw://4fca6c03d583898ff15231a43c7a8c902dcc549a41dee187e35e9924d9fa9519\",\"dweb:/ipfs/QmPuadiQEhrU1SNXi58KTJtQ2e2uGStB2UwkgCxJTfXLFZ\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.6.0;\r\npragma experimental ABIEncoderV2;\r\n\r\ninterface IScdMcdMigration {\r\n    // Function to swap YFD to DAI\r\n    // This function is to be used by users that want to get new DAI in exchange of old one (aka YFD)\r\n    // wad amount has to be <= the value pending to reach the debt ceiling (the minimum between general and ilk one)\r\n    function swapYfdToDai(\r\n        uint256 wad\r\n    )\r\n        external;\r\n\r\n    // Function to swap DAI to YFD\r\n    // This function is to be used by users that want to get YFD in exchange of DAI\r\n    // wad amount has to be <= the amount of YFD locked (and DAI generated) in the migration contract YFD CDP\r\n    function swapDaiToYfd(\r\n        uint256 wad\r\n    )\r\n        external;\r\n}\r\n",
+  "sourcePath": "E:/Warcraft/t/CalDex/exchangewrapper/contracts/external/Maker/Other/IScdMcdMigration.sol",
+  "ast": {
+    "absolutePath": "/E/Warcraft/t/CalDex/exchangewrapper/contracts/external/Maker/Other/IScdMcdMigration.sol",
+    "exportedSymbols": {
+      "IScdMcdMigration": [
+        468
+      ]
+    },
+    "id": 469,
+    "license": null,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 456,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:9"
+      },
+      {
+        "id": 457,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "25:33:9"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 468,
+        "linearizedBaseContracts": [
+          468
+        ],
+        "name": "IScdMcdMigration",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "f15ae227",
+            "id": 462,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "swapYfdToDai",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 460,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 459,
+                  "mutability": "mutable",
+                  "name": "wad",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 462,
+                  "src": "385:11:9",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 458,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "385:7:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "374:29:9"
+            },
+            "returnParameters": {
+              "id": 461,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "421:0:9"
+            },
+            "scope": 468,
+            "src": "353:69:9",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "329d1075",
+            "id": 467,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "swapDaiToYfd",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 465,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 464,
+                  "mutability": "mutable",
+                  "name": "wad",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 467,
+                  "src": "694:11:9",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 463,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "694:7:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "683:29:9"
+            },
+            "returnParameters": {
+              "id": 466,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "730:0:9"
+            },
+            "scope": 468,
+            "src": "662:69:9",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 469,
+        "src": "62:672:9"
+      }
+    ],
+    "src": "0:736:9"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/E/Warcraft/t/CalDex/exchangewrapper/contracts/external/Maker/Other/IScdMcdMigration.sol",
+      "exportedSymbols": {
+        "IScdMcdMigration": [
+          468
+        ]
+      },
+      "license": null
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.6",
+            ".0"
+          ]
+        },
+        "id": 456,
+        "name": "PragmaDirective",
+        "src": "0:23:9"
+      },
+      {
+        "attributes": {
+          "literals": [
+            "experimental",
+            "ABIEncoderV2"
+          ]
+        },
+        "id": 457,
+        "name": "PragmaDirective",
+        "src": "25:33:9"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            468
+          ],
+          "name": "IScdMcdMigration",
+          "scope": 469
+        },
+        "children": [
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "f15ae227",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "swapYfdToDai",
+              "overrides": null,
+              "scope": 468,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "wad",
+                      "overrides": null,
+                      "scope": 462,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 458,
+                        "name": "ElementaryTypeName",
+                        "src": "385:7:9"
+                      }
+                    ],
+                    "id": 459,
+                    "name": "VariableDeclaration",
+                    "src": "385:11:9"
+                  }
+                ],
+                "id": 460,
+                "name": "ParameterList",
+                "src": "374:29:9"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 461,
+                "name": "ParameterList",
+                "src": "421:0:9"
+              }
+            ],
+            "id": 462,
+            "name": "FunctionDefinition",
+            "src": "353:69:9"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "329d1075",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "swapDaiToYfd",
+              "overrides": null,
+              "scope": 468,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "wad",
+                      "overrides": null,
+                      "scope": 467,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 463,
+                        "name": "ElementaryTypeName",
+                        "src": "694:7:9"
+                      }
+                    ],
+                    "id": 464,
+                    "name": "VariableDeclaration",
+                    "src": "694:11:9"
+                  }
+                ],
+                "id": 465,
+                "name": "ParameterList",
+                "src": "683:29:9"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 466,
+                "name": "ParameterList",
+                "src": "730:0:9"
+              }
+            ],
+            "id": 467,
+            "name": "FunctionDefinition",
+            "src": "662:69:9"
+          }
+        ],
+        "id": 468,
+        "name": "ContractDefinition",
+        "src": "62:672:9"
+      }
+    ],
+    "id": 469,
+    "name": "SourceUnit",
+    "src": "0:736:9"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.12+commit.27d51765.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-04-13T11:13:14.950Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

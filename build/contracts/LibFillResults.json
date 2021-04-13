@@ -1,0 +1,593 @@
+{
+  "contractName": "LibFillResults",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/E/Warcraft/t/CalDex/exchangewrapper/contracts/external/0x/v2/libs/LibFillResults.sol\":\"LibFillResults\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/E/Warcraft/t/CalDex/exchangewrapper/contracts/external/0x/v2/libs/LibFillResults.sol\":{\"keccak256\":\"0x4e3fe0a3536681ccb2e0f8e2cbaabc61c02a7610fd9f2eb1c66f8718d176fb03\",\"urls\":[\"bzz-raw://33944da34bba41e6e7ca28f2c16679c887af1debde2d6c4bada3636e4c7a89f7\",\"dweb:/ipfs/QmNx2W2oqgWemckqiwT9T3vJzTbHmGVVCW5cPVQbCPeiZn\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea2646970667358221220a2dce531dcf1e2854d3234fbced2a7760fc90f1dd8d28020abe21b74fbeb0d0c64736f6c634300060c0033",
+  "deployedBytecode": "0x6080604052600080fdfea2646970667358221220a2dce531dcf1e2854d3234fbced2a7760fc90f1dd8d28020abe21b74fbeb0d0c64736f6c634300060c0033",
+  "immutableReferences": {},
+  "sourceMap": "662:813:0:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "662:813:0:-:0;;;;;",
+  "source": "/*\r\n\r\n  Copyright 2018 ZeroEx Intl.\r\n\r\n  Licensed under the Apache License, Version 2.0 (the \"License\");\r\n  you may not use this file except in compliance with the License.\r\n  You may obtain a copy of the License at\r\n\r\n    http://www.apache.org/licenses/LICENSE-2.0\r\n\r\n  Unless required by applicable law or agreed to in writing, software\r\n  distributed under the License is distributed on an \"AS IS\" BASIS,\r\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\r\n  See the License for the specific language governing permissions and\r\n  limitations under the License.\r\n\r\n*/\r\n\r\npragma solidity ^0.6.0;\r\npragma experimental ABIEncoderV2;\r\n\r\n\r\ncontract LibFillResults\r\n{\r\n    struct FillResults {\r\n        uint256 makerAssetFilledAmount;  // Total amount of makerAsset(s) filled.\r\n        uint256 takerAssetFilledAmount;  // Total amount of takerAsset(s) filled.\r\n        uint256 makerFeePaid;            // Total amount of ZRX paid by maker(s) to feeRecipient(s).\r\n        uint256 takerFeePaid;            // Total amount of ZRX paid by taker to feeRecipients(s).\r\n    }\r\n\r\n    struct MatchedFillResults {\r\n        FillResults left;                    // Amounts filled and fees paid of left order.\r\n        FillResults right;                   // Amounts filled and fees paid of right order.\r\n        uint256 leftMakerAssetSpreadAmount;  // Spread between price of left and right order, denominated in the left order's makerAsset, paid to taker.\r\n    }\r\n}\r\n",
+  "sourcePath": "E:/Warcraft/t/CalDex/exchangewrapper/contracts/external/0x/v2/libs/LibFillResults.sol",
+  "ast": {
+    "absolutePath": "/E/Warcraft/t/CalDex/exchangewrapper/contracts/external/0x/v2/libs/LibFillResults.sol",
+    "exportedSymbols": {
+      "LibFillResults": [
+        19
+      ]
+    },
+    "id": 20,
+    "license": null,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "598:23:0"
+      },
+      {
+        "id": 2,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "623:33:0"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 19,
+        "linearizedBaseContracts": [
+          19
+        ],
+        "name": "LibFillResults",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "LibFillResults.FillResults",
+            "id": 11,
+            "members": [
+              {
+                "constant": false,
+                "id": 4,
+                "mutability": "mutable",
+                "name": "makerAssetFilledAmount",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 11,
+                "src": "724:30:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 3,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "724:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 6,
+                "mutability": "mutable",
+                "name": "takerAssetFilledAmount",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 11,
+                "src": "807:30:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 5,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "807:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 8,
+                "mutability": "mutable",
+                "name": "makerFeePaid",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 11,
+                "src": "890:20:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 7,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "890:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 10,
+                "mutability": "mutable",
+                "name": "takerFeePaid",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 11,
+                "src": "992:20:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 9,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "992:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "FillResults",
+            "nodeType": "StructDefinition",
+            "scope": 19,
+            "src": "694:395:0",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "LibFillResults.MatchedFillResults",
+            "id": 18,
+            "members": [
+              {
+                "constant": false,
+                "id": 13,
+                "mutability": "mutable",
+                "name": "left",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 18,
+                "src": "1134:16:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_FillResults_$11_storage_ptr",
+                  "typeString": "struct LibFillResults.FillResults"
+                },
+                "typeName": {
+                  "contractScope": null,
+                  "id": 12,
+                  "name": "FillResults",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 11,
+                  "src": "1134:11:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_FillResults_$11_storage_ptr",
+                    "typeString": "struct LibFillResults.FillResults"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 15,
+                "mutability": "mutable",
+                "name": "right",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 18,
+                "src": "1227:17:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_FillResults_$11_storage_ptr",
+                  "typeString": "struct LibFillResults.FillResults"
+                },
+                "typeName": {
+                  "contractScope": null,
+                  "id": 14,
+                  "name": "FillResults",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 11,
+                  "src": "1227:11:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_FillResults_$11_storage_ptr",
+                    "typeString": "struct LibFillResults.FillResults"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 17,
+                "mutability": "mutable",
+                "name": "leftMakerAssetSpreadAmount",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 18,
+                "src": "1321:34:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 16,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1321:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "MatchedFillResults",
+            "nodeType": "StructDefinition",
+            "scope": 19,
+            "src": "1097:375:0",
+            "visibility": "public"
+          }
+        ],
+        "scope": 20,
+        "src": "662:813:0"
+      }
+    ],
+    "src": "598:879:0"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/E/Warcraft/t/CalDex/exchangewrapper/contracts/external/0x/v2/libs/LibFillResults.sol",
+      "exportedSymbols": {
+        "LibFillResults": [
+          19
+        ]
+      },
+      "license": null
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.6",
+            ".0"
+          ]
+        },
+        "id": 1,
+        "name": "PragmaDirective",
+        "src": "598:23:0"
+      },
+      {
+        "attributes": {
+          "literals": [
+            "experimental",
+            "ABIEncoderV2"
+          ]
+        },
+        "id": 2,
+        "name": "PragmaDirective",
+        "src": "623:33:0"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            19
+          ],
+          "name": "LibFillResults",
+          "scope": 20
+        },
+        "children": [
+          {
+            "attributes": {
+              "canonicalName": "LibFillResults.FillResults",
+              "name": "FillResults",
+              "scope": 19,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "makerAssetFilledAmount",
+                  "overrides": null,
+                  "scope": 11,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 3,
+                    "name": "ElementaryTypeName",
+                    "src": "724:7:0"
+                  }
+                ],
+                "id": 4,
+                "name": "VariableDeclaration",
+                "src": "724:30:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "takerAssetFilledAmount",
+                  "overrides": null,
+                  "scope": 11,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 5,
+                    "name": "ElementaryTypeName",
+                    "src": "807:7:0"
+                  }
+                ],
+                "id": 6,
+                "name": "VariableDeclaration",
+                "src": "807:30:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "makerFeePaid",
+                  "overrides": null,
+                  "scope": 11,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 7,
+                    "name": "ElementaryTypeName",
+                    "src": "890:7:0"
+                  }
+                ],
+                "id": 8,
+                "name": "VariableDeclaration",
+                "src": "890:20:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "takerFeePaid",
+                  "overrides": null,
+                  "scope": 11,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 9,
+                    "name": "ElementaryTypeName",
+                    "src": "992:7:0"
+                  }
+                ],
+                "id": 10,
+                "name": "VariableDeclaration",
+                "src": "992:20:0"
+              }
+            ],
+            "id": 11,
+            "name": "StructDefinition",
+            "src": "694:395:0"
+          },
+          {
+            "attributes": {
+              "canonicalName": "LibFillResults.MatchedFillResults",
+              "name": "MatchedFillResults",
+              "scope": 19,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "left",
+                  "overrides": null,
+                  "scope": 18,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "struct LibFillResults.FillResults",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "contractScope": null,
+                      "name": "FillResults",
+                      "referencedDeclaration": 11,
+                      "type": "struct LibFillResults.FillResults"
+                    },
+                    "id": 12,
+                    "name": "UserDefinedTypeName",
+                    "src": "1134:11:0"
+                  }
+                ],
+                "id": 13,
+                "name": "VariableDeclaration",
+                "src": "1134:16:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "right",
+                  "overrides": null,
+                  "scope": 18,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "struct LibFillResults.FillResults",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "contractScope": null,
+                      "name": "FillResults",
+                      "referencedDeclaration": 11,
+                      "type": "struct LibFillResults.FillResults"
+                    },
+                    "id": 14,
+                    "name": "UserDefinedTypeName",
+                    "src": "1227:11:0"
+                  }
+                ],
+                "id": 15,
+                "name": "VariableDeclaration",
+                "src": "1227:17:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "leftMakerAssetSpreadAmount",
+                  "overrides": null,
+                  "scope": 18,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 16,
+                    "name": "ElementaryTypeName",
+                    "src": "1321:7:0"
+                  }
+                ],
+                "id": 17,
+                "name": "VariableDeclaration",
+                "src": "1321:34:0"
+              }
+            ],
+            "id": 18,
+            "name": "StructDefinition",
+            "src": "1097:375:0"
+          }
+        ],
+        "id": 19,
+        "name": "ContractDefinition",
+        "src": "662:813:0"
+      }
+    ],
+    "id": 20,
+    "name": "SourceUnit",
+    "src": "598:879:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.12+commit.27d51765.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-04-13T11:15:19.819Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

@@ -1,0 +1,1159 @@
+{
+  "contractName": "LibOrder",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/E/Warcraft/t/CalDex/exchangewrapper/contracts/external/0x/v2/libs/LibOrder.sol\":\"LibOrder\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/E/Warcraft/t/CalDex/exchangewrapper/contracts/external/0x/v2/libs/LibOrder.sol\":{\"keccak256\":\"0x01f16c083d6b73f0cc61881b3ab6d5fd0295ab0bf4338d7c2239f6dbedfd94fd\",\"urls\":[\"bzz-raw://cdb08c3d327df3146e4355463507cff55a4a5ad3dcb44da64a4b08e7d40ae92e\",\"dweb:/ipfs/Qmd2rQ8xa4q6Xc3dpMLy2CU3yThQ9tQnXoYopn6fAupddW\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea2646970667358221220f108ececa1790b082f3f02ddcb2733eb6040b4a79e4b83c208c6bbb77c79037064736f6c634300060c0033",
+  "deployedBytecode": "0x6080604052600080fdfea2646970667358221220f108ececa1790b082f3f02ddcb2733eb6040b4a79e4b83c208c6bbb77c79037064736f6c634300060c0033",
+  "immutableReferences": {},
+  "sourceMap": "662:2744:1:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "662:2744:1:-:0;;;;;",
+  "source": "/*\r\n\r\n  Copyright 2018 ZeroEx Intl.\r\n\r\n  Licensed under the Apache License, Version 2.0 (the \"License\");\r\n  you may not use this file except in compliance with the License.\r\n  You may obtain a copy of the License at\r\n\r\n    http://www.apache.org/licenses/LICENSE-2.0\r\n\r\n  Unless required by applicable law or agreed to in writing, software\r\n  distributed under the License is distributed on an \"AS IS\" BASIS,\r\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\r\n  See the License for the specific language governing permissions and\r\n  limitations under the License.\r\n\r\n*/\r\n\r\npragma solidity ^0.6.0;\r\npragma experimental ABIEncoderV2;\r\n\r\n\r\ncontract LibOrder\r\n{\r\n    // A valid order remains fillable until it is expired, fully filled, or cancelled.\r\n    // An order's state is unaffected by external factors, like account balances.\r\n    enum OrderStatus {\r\n        INVALID,                     // Default value\r\n        INVALID_MAKER_ASSET_AMOUNT,  // Order does not have a valid maker asset amount\r\n        INVALID_TAKER_ASSET_AMOUNT,  // Order does not have a valid taker asset amount\r\n        FILLABLE,                    // Order is fillable\r\n        EXPIRED,                     // Order has already expired\r\n        FULLY_FILLED,                // Order is fully filled\r\n        CANCELLED                    // Order has been cancelled\r\n    }\r\n\r\n    struct Order {\r\n        address makerAddress;           // Address that created the order.\r\n        address takerAddress;           // Address that is allowed to fill the order. If set to 0, any address is allowed to fill the order.\r\n        address feeRecipientAddress;    // Address that will recieve fees when order is filled.\r\n        address senderAddress;          // Address that is allowed to call Exchange contract methods that affect this order. If set to 0, any address is allowed to call these methods.\r\n        uint256 makerAssetAmount;       // Amount of makerAsset being offered by maker. Must be greater than 0.\r\n        uint256 takerAssetAmount;       // Amount of takerAsset being bid on by maker. Must be greater than 0.\r\n        uint256 makerFee;               // Amount of ZRX paid to feeRecipient by maker when order is filled. If set to 0, no transfer of ZRX from maker to feeRecipient will be attempted.\r\n        uint256 takerFee;               // Amount of ZRX paid to feeRecipient by taker when order is filled. If set to 0, no transfer of ZRX from taker to feeRecipient will be attempted.\r\n        uint256 expirationTimeSeconds;  // Timestamp in seconds at which order expires.\r\n        uint256 salt;                   // Arbitrary number to facilitate uniqueness of the order's hash.\r\n        bytes makerAssetData;           // Encoded data that can be decoded by a specified proxy contract when transferring makerAsset. The last byte references the id of this proxy.\r\n        bytes takerAssetData;           // Encoded data that can be decoded by a specified proxy contract when transferring takerAsset. The last byte references the id of this proxy.\r\n    }\r\n\r\n    struct OrderInfo {\r\n        uint8 orderStatus;                    // Status that describes order's validity and fillability.\r\n        bytes32 orderHash;                    // EIP712 hash of the order (see LibOrder.getOrderHash).\r\n        uint256 orderTakerAssetFilledAmount;  // Amount of order that has already been filled.\r\n    }\r\n}\r\n",
+  "sourcePath": "E:/Warcraft/t/CalDex/exchangewrapper/contracts/external/0x/v2/libs/LibOrder.sol",
+  "ast": {
+    "absolutePath": "/E/Warcraft/t/CalDex/exchangewrapper/contracts/external/0x/v2/libs/LibOrder.sol",
+    "exportedSymbols": {
+      "LibOrder": [
+        63
+      ]
+    },
+    "id": 64,
+    "license": null,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 21,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "598:23:1"
+      },
+      {
+        "id": 22,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "623:33:1"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 63,
+        "linearizedBaseContracts": [
+          63
+        ],
+        "name": "LibOrder",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "LibOrder.OrderStatus",
+            "id": 30,
+            "members": [
+              {
+                "id": 23,
+                "name": "INVALID",
+                "nodeType": "EnumValue",
+                "src": "887:7:1"
+              },
+              {
+                "id": 24,
+                "name": "INVALID_MAKER_ASSET_AMOUNT",
+                "nodeType": "EnumValue",
+                "src": "942:26:1"
+              },
+              {
+                "id": 25,
+                "name": "INVALID_TAKER_ASSET_AMOUNT",
+                "nodeType": "EnumValue",
+                "src": "1030:26:1"
+              },
+              {
+                "id": 26,
+                "name": "FILLABLE",
+                "nodeType": "EnumValue",
+                "src": "1118:8:1"
+              },
+              {
+                "id": 27,
+                "name": "EXPIRED",
+                "nodeType": "EnumValue",
+                "src": "1177:7:1"
+              },
+              {
+                "id": 28,
+                "name": "FULLY_FILLED",
+                "nodeType": "EnumValue",
+                "src": "1244:12:1"
+              },
+              {
+                "id": 29,
+                "name": "CANCELLED",
+                "nodeType": "EnumValue",
+                "src": "1307:9:1"
+              }
+            ],
+            "name": "OrderStatus",
+            "nodeType": "EnumDefinition",
+            "src": "859:511:1"
+          },
+          {
+            "canonicalName": "LibOrder.Order",
+            "id": 55,
+            "members": [
+              {
+                "constant": false,
+                "id": 32,
+                "mutability": "mutable",
+                "name": "makerAddress",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 55,
+                "src": "1402:20:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 31,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1402:7:1",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 34,
+                "mutability": "mutable",
+                "name": "takerAddress",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 55,
+                "src": "1478:20:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 33,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1478:7:1",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 36,
+                "mutability": "mutable",
+                "name": "feeRecipientAddress",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 55,
+                "src": "1620:27:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 35,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1620:7:1",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 38,
+                "mutability": "mutable",
+                "name": "senderAddress",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 55,
+                "src": "1717:21:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 37,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1717:7:1",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 40,
+                "mutability": "mutable",
+                "name": "makerAssetAmount",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 55,
+                "src": "1902:24:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 39,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1902:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 42,
+                "mutability": "mutable",
+                "name": "takerAssetAmount",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 55,
+                "src": "2015:24:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 41,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2015:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 44,
+                "mutability": "mutable",
+                "name": "makerFee",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 55,
+                "src": "2127:16:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 43,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2127:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 46,
+                "mutability": "mutable",
+                "name": "takerFee",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 55,
+                "src": "2315:16:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 45,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2315:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 48,
+                "mutability": "mutable",
+                "name": "expirationTimeSeconds",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 55,
+                "src": "2503:29:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 47,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2503:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 50,
+                "mutability": "mutable",
+                "name": "salt",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 55,
+                "src": "2592:12:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 49,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2592:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 52,
+                "mutability": "mutable",
+                "name": "makerAssetData",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 55,
+                "src": "2699:20:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes_storage_ptr",
+                  "typeString": "bytes"
+                },
+                "typeName": {
+                  "id": 51,
+                  "name": "bytes",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2699:5:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_storage_ptr",
+                    "typeString": "bytes"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 54,
+                "mutability": "mutable",
+                "name": "takerAssetData",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 55,
+                "src": "2883:20:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes_storage_ptr",
+                  "typeString": "bytes"
+                },
+                "typeName": {
+                  "id": 53,
+                  "name": "bytes",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2883:5:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_storage_ptr",
+                    "typeString": "bytes"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Order",
+            "nodeType": "StructDefinition",
+            "scope": 63,
+            "src": "1378:1686:1",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "LibOrder.OrderInfo",
+            "id": 62,
+            "members": [
+              {
+                "constant": false,
+                "id": 57,
+                "mutability": "mutable",
+                "name": "orderStatus",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 62,
+                "src": "3100:17:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint8",
+                  "typeString": "uint8"
+                },
+                "typeName": {
+                  "id": 56,
+                  "name": "uint8",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "3100:5:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 59,
+                "mutability": "mutable",
+                "name": "orderHash",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 62,
+                "src": "3206:17:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 58,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "3206:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 61,
+                "mutability": "mutable",
+                "name": "orderTakerAssetFilledAmount",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 62,
+                "src": "3310:35:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 60,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "3310:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "OrderInfo",
+            "nodeType": "StructDefinition",
+            "scope": 63,
+            "src": "3072:331:1",
+            "visibility": "public"
+          }
+        ],
+        "scope": 64,
+        "src": "662:2744:1"
+      }
+    ],
+    "src": "598:2810:1"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/E/Warcraft/t/CalDex/exchangewrapper/contracts/external/0x/v2/libs/LibOrder.sol",
+      "exportedSymbols": {
+        "LibOrder": [
+          63
+        ]
+      },
+      "license": null
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.6",
+            ".0"
+          ]
+        },
+        "id": 21,
+        "name": "PragmaDirective",
+        "src": "598:23:1"
+      },
+      {
+        "attributes": {
+          "literals": [
+            "experimental",
+            "ABIEncoderV2"
+          ]
+        },
+        "id": 22,
+        "name": "PragmaDirective",
+        "src": "623:33:1"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            63
+          ],
+          "name": "LibOrder",
+          "scope": 64
+        },
+        "children": [
+          {
+            "attributes": {
+              "canonicalName": "LibOrder.OrderStatus",
+              "name": "OrderStatus"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "INVALID"
+                },
+                "id": 23,
+                "name": "EnumValue",
+                "src": "887:7:1"
+              },
+              {
+                "attributes": {
+                  "name": "INVALID_MAKER_ASSET_AMOUNT"
+                },
+                "id": 24,
+                "name": "EnumValue",
+                "src": "942:26:1"
+              },
+              {
+                "attributes": {
+                  "name": "INVALID_TAKER_ASSET_AMOUNT"
+                },
+                "id": 25,
+                "name": "EnumValue",
+                "src": "1030:26:1"
+              },
+              {
+                "attributes": {
+                  "name": "FILLABLE"
+                },
+                "id": 26,
+                "name": "EnumValue",
+                "src": "1118:8:1"
+              },
+              {
+                "attributes": {
+                  "name": "EXPIRED"
+                },
+                "id": 27,
+                "name": "EnumValue",
+                "src": "1177:7:1"
+              },
+              {
+                "attributes": {
+                  "name": "FULLY_FILLED"
+                },
+                "id": 28,
+                "name": "EnumValue",
+                "src": "1244:12:1"
+              },
+              {
+                "attributes": {
+                  "name": "CANCELLED"
+                },
+                "id": 29,
+                "name": "EnumValue",
+                "src": "1307:9:1"
+              }
+            ],
+            "id": 30,
+            "name": "EnumDefinition",
+            "src": "859:511:1"
+          },
+          {
+            "attributes": {
+              "canonicalName": "LibOrder.Order",
+              "name": "Order",
+              "scope": 63,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "makerAddress",
+                  "overrides": null,
+                  "scope": 55,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "address",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "address",
+                      "stateMutability": "nonpayable",
+                      "type": "address"
+                    },
+                    "id": 31,
+                    "name": "ElementaryTypeName",
+                    "src": "1402:7:1"
+                  }
+                ],
+                "id": 32,
+                "name": "VariableDeclaration",
+                "src": "1402:20:1"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "takerAddress",
+                  "overrides": null,
+                  "scope": 55,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "address",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "address",
+                      "stateMutability": "nonpayable",
+                      "type": "address"
+                    },
+                    "id": 33,
+                    "name": "ElementaryTypeName",
+                    "src": "1478:7:1"
+                  }
+                ],
+                "id": 34,
+                "name": "VariableDeclaration",
+                "src": "1478:20:1"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "feeRecipientAddress",
+                  "overrides": null,
+                  "scope": 55,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "address",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "address",
+                      "stateMutability": "nonpayable",
+                      "type": "address"
+                    },
+                    "id": 35,
+                    "name": "ElementaryTypeName",
+                    "src": "1620:7:1"
+                  }
+                ],
+                "id": 36,
+                "name": "VariableDeclaration",
+                "src": "1620:27:1"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "senderAddress",
+                  "overrides": null,
+                  "scope": 55,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "address",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "address",
+                      "stateMutability": "nonpayable",
+                      "type": "address"
+                    },
+                    "id": 37,
+                    "name": "ElementaryTypeName",
+                    "src": "1717:7:1"
+                  }
+                ],
+                "id": 38,
+                "name": "VariableDeclaration",
+                "src": "1717:21:1"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "makerAssetAmount",
+                  "overrides": null,
+                  "scope": 55,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 39,
+                    "name": "ElementaryTypeName",
+                    "src": "1902:7:1"
+                  }
+                ],
+                "id": 40,
+                "name": "VariableDeclaration",
+                "src": "1902:24:1"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "takerAssetAmount",
+                  "overrides": null,
+                  "scope": 55,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 41,
+                    "name": "ElementaryTypeName",
+                    "src": "2015:7:1"
+                  }
+                ],
+                "id": 42,
+                "name": "VariableDeclaration",
+                "src": "2015:24:1"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "makerFee",
+                  "overrides": null,
+                  "scope": 55,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 43,
+                    "name": "ElementaryTypeName",
+                    "src": "2127:7:1"
+                  }
+                ],
+                "id": 44,
+                "name": "VariableDeclaration",
+                "src": "2127:16:1"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "takerFee",
+                  "overrides": null,
+                  "scope": 55,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 45,
+                    "name": "ElementaryTypeName",
+                    "src": "2315:7:1"
+                  }
+                ],
+                "id": 46,
+                "name": "VariableDeclaration",
+                "src": "2315:16:1"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "expirationTimeSeconds",
+                  "overrides": null,
+                  "scope": 55,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 47,
+                    "name": "ElementaryTypeName",
+                    "src": "2503:7:1"
+                  }
+                ],
+                "id": 48,
+                "name": "VariableDeclaration",
+                "src": "2503:29:1"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "salt",
+                  "overrides": null,
+                  "scope": 55,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 49,
+                    "name": "ElementaryTypeName",
+                    "src": "2592:7:1"
+                  }
+                ],
+                "id": 50,
+                "name": "VariableDeclaration",
+                "src": "2592:12:1"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "makerAssetData",
+                  "overrides": null,
+                  "scope": 55,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "bytes",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "bytes",
+                      "type": "bytes"
+                    },
+                    "id": 51,
+                    "name": "ElementaryTypeName",
+                    "src": "2699:5:1"
+                  }
+                ],
+                "id": 52,
+                "name": "VariableDeclaration",
+                "src": "2699:20:1"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "takerAssetData",
+                  "overrides": null,
+                  "scope": 55,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "bytes",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "bytes",
+                      "type": "bytes"
+                    },
+                    "id": 53,
+                    "name": "ElementaryTypeName",
+                    "src": "2883:5:1"
+                  }
+                ],
+                "id": 54,
+                "name": "VariableDeclaration",
+                "src": "2883:20:1"
+              }
+            ],
+            "id": 55,
+            "name": "StructDefinition",
+            "src": "1378:1686:1"
+          },
+          {
+            "attributes": {
+              "canonicalName": "LibOrder.OrderInfo",
+              "name": "OrderInfo",
+              "scope": 63,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "orderStatus",
+                  "overrides": null,
+                  "scope": 62,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint8",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint8",
+                      "type": "uint8"
+                    },
+                    "id": 56,
+                    "name": "ElementaryTypeName",
+                    "src": "3100:5:1"
+                  }
+                ],
+                "id": 57,
+                "name": "VariableDeclaration",
+                "src": "3100:17:1"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "orderHash",
+                  "overrides": null,
+                  "scope": 62,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "bytes32",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "bytes32",
+                      "type": "bytes32"
+                    },
+                    "id": 58,
+                    "name": "ElementaryTypeName",
+                    "src": "3206:7:1"
+                  }
+                ],
+                "id": 59,
+                "name": "VariableDeclaration",
+                "src": "3206:17:1"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "orderTakerAssetFilledAmount",
+                  "overrides": null,
+                  "scope": 62,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 60,
+                    "name": "ElementaryTypeName",
+                    "src": "3310:7:1"
+                  }
+                ],
+                "id": 61,
+                "name": "VariableDeclaration",
+                "src": "3310:35:1"
+              }
+            ],
+            "id": 62,
+            "name": "StructDefinition",
+            "src": "3072:331:1"
+          }
+        ],
+        "id": 63,
+        "name": "ContractDefinition",
+        "src": "662:2744:1"
+      }
+    ],
+    "id": 64,
+    "name": "SourceUnit",
+    "src": "598:2810:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.12+commit.27d51765.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-04-13T11:15:19.855Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
